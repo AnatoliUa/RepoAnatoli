@@ -26,22 +26,26 @@ def test_repo_with_single_char_be_found(github_api):
     assert r['total_count'] != 0
 
 @pytest.mark.myapi
-def test_people_user_follows(github_api):
-    r = github_api.people_user_follows('defunkt')
-    assert r.status_code == 200
-    
-@pytest.mark.myapi
 def test_emojis(github_api):
+    """Emoji 'ukraine' is available to use on GitHub."""
     r = github_api.emojis()
     assert 'ukraine' in r.keys()
 
 @pytest.mark.myapi
 def test_root(github_api):
+    """Links to resource 'current_user_url' in GitHub"""
     r = github_api.root()
     assert r["current_user_url"] == "https://api.github.com/user"
 
 @pytest.mark.myapi
 def test_root(github_api):
+    """Template for Gitignore for Android is in list of ignore-templates"""
     r = github_api.gitignore()
     assert "Android" in r
+
+@pytest.mark.myapi
+def test_get_a_code_of_conduct(github_api):
+    """Return information about the specified GitHub code of conduct."""
+    r = github_api.get_a_code_of_conduct("contributor_covenant")
+    assert r["url"] == "https://api.github.com/codes_of_conduct/contributor_covenant"
   

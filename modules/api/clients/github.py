@@ -11,25 +11,27 @@ class GitHub:
         body = r.json()
         return body
     
-    def people_user_follows(self):
-        token = 'Bearer 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'
-        hdr = {'Accept': 'application/vnd.github+json', 'Authorization': token}
-        #r = requests.get(f'https://api.github.com/user/following/{username}', {'Authorization': token})
-        r = requests.get(f'https://api.github.com/user/following', headers=hdr)
-        return r
-    
     def emojis(self):
+        """List all the emojis available to use on GitHub."""
         r = requests.get('https://api.github.com/emojis')
         body = r.json()
         return body
     
     def root(self):
+        """Get links to resources accessible in GitHub's REST API."""
         r = requests.get('https://api.github.com/')
         body = r.json()
         return body
     
     def gitignore(self):
+        """List all templates available to pass as an option when creating a repository."""
         r = requests.get('https://api.github.com/gitignore/templates')
+        body = r.json()
+        return body
+    
+    def get_a_code_of_conduct(self, key):
+        """Return information about the specified GitHub code of conduct."""
+        r = requests.get(f'https://api.github.com/codes_of_conduct/{key}')
         body = r.json()
         return body
     
