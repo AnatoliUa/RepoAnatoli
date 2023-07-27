@@ -29,10 +29,3 @@ def db_object():
     """Create database object"""
     db = Database()
     yield db
-
-@pytest.fixture
-def db_del_rec_after_test():
-    """Delete temporal record after test"""
-    db0 = Database()
-    yield
-    db0.delete_product_by_id(4)
